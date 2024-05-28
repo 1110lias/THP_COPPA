@@ -3,6 +3,7 @@
 
 <div class="profile-container">
   <p><strong>Name:</strong> <%= @user.first_name %></p>
+  <p><strong>Name:</strong> <%= @user.last_name %></p>
   <p><strong>Email:</strong> <%= @user.email %></p>
   <p><strong>Joined:</strong> <%= @user.created_at.strftime("%B %d, %Y") %></p>
   <!-- Ajoutez d'autres champs de profil si nécessaire -->
