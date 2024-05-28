@@ -69,3 +69,7 @@ end
 gem "faker" 
 
 gem "devise"
+
+gem "tailwindcss-rails", "~> 2.6"
+
+gem "table_print"

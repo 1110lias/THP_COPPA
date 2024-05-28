@@ -1,13 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Sansita:ital,wght@0,400;0,700;0,800;0,900;1,400;1,700;1,800;1,900&family=Scope+One&family=Thasadith:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/*
+
 
 @layer components {
+
+  /* Fonts */
+  * {
+    @apply font-mono;
+  }
+  
+  h1 {
+    @apply font-sans;
+  }
+
+  h2, h3, h4, h5, h6 {
+    @apply font-serif;
+  }
+  
+  /* Buttons */
+  .btn {
+    @apply no-underline;
+  }
+
   .btn-primary {
-    @apply py-2 px-4 bg-blue-200;
+    @apply bg-pink-900 hover:bg-pink-800 text-white font-bold py-2 px-4 rounded-full;
+  }
+  
+  .btn-outline-primary {
+    @apply outline outline-2 outline-pink-900 hover:text-zinc-600 text-zinc-700 font-bold py-2 px-4 rounded-full;
+  }
+
+  .btn-secondary {
+    @apply bg-amber-500 hover:bg-amber-400 text-white font-bold py-2 px-4 rounded-full;
+  }
+
+  .btn-outline-secondary {
+    @apply outline outline-2 outline-amber-500 hover:text-zinc-600 text-zinc-700 font-bold py-2 px-4 rounded-full;
   }
 }
 
-*/
