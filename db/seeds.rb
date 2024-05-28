@@ -10,12 +10,12 @@
 require "faker"
 
 # Destroy existing records to start fresh
-Cart.destroy_all
-Order.destroy_all
-Product.destroy_all
 User.destroy_all
-CartsProduct.destroy_all
-OrderItem.destroy_all
+Order.destroy_all
+Cart.destroy_all
+Product.destroy_all
+CartProduct.destroy_all
+OrderProduct.destroy_all
 
 # Create users
 users = []
