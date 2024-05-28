@@ -73,3 +73,5 @@ gem "devise"
 gem "tailwindcss-rails", "~> 2.6"
 
 gem "table_print"
+
+gem "hotwire-rails", "~> 0.1.3"

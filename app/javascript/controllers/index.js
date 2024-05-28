@@ -6,3 +6,10 @@ import { application } from "./application"
 
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
+
+import { Application } from "stimulus"
+import { definitionsFromContext } from "stimulus/webpack-helpers"
+import NavbarController from "./navbar_controller"
+
+const application = Application.start()
+application.register("navbar", NavbarController)
