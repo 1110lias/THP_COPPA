@@ -8,6 +8,7 @@ class CreateUsers < ActiveRecord::Migration[7.1]
       t.string :billing_address
       t.string :delivery_address
       t.string :password_digest # Pour Devise MDP
+      t.boolean :isadmin
       t.timestamps
     end
   end

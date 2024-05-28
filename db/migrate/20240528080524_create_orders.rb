@@ -1,8 +1,6 @@
 class CreateOrders < ActiveRecord::Migration[7.1]
   def change
     create_table :orders do |t|
-      t.integer :bundle_order_id #Future migration
-      t.datetime :bundle_order_time #Future migration
       t.string :status
       t.datetime :startedate
       t.float :total_price, null: false
