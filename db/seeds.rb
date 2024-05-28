@@ -7,98 +7,81 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+
+# Seed file to populate the database with dummy data
+
 require "faker"
 
 # Destroy existing records to start fresh
-User.destroy_all
-Order.destroy_all
-Cart.destroy_all
-Product.destroy_all
 CartProduct.destroy_all
+Order.destroy_all
+Product.destroy_all
+Cart.destroy_all
+User.destroy_all
 OrderProduct.destroy_all
 
 # Create users
-users = []
 10.times do
   user = User.create!(
-    first_name: Faker::Name.first_name, 
-    last_name: Faker::Name.last_name, 
-    password_digest: Faker::Internet.password, 
-    email: Faker::Internet.email, 
-    phone_number: Faker::PhoneNumber.phone_number, 
-    billing_address: Faker::Address.full_address, 
-    delivery_address: Faker::Address.full_address
+    first_name: Faker::Name.first_name,
+    last_name: Faker::Name.last_name,
+    email: Faker::Internet.email,
+    phone_number: Faker::PhoneNumber.phone_number,
+    billing_address: Faker::Address.full_address,
+    delivery_address: Faker::Address.full_address,
+    password_digest: Faker::Internet.password,
+    isadmin: Faker::Boolean.boolean # Add admin status
   )
-  users << user
-end
-
-# Create fake carts
-carts = []
-10.times do
-  cart = Cart.create!(
-    total_price: rand(1.0..1000.0), 
-    user_id: users.sample.id, 
-    created_at: Time.now - rand(1..30).days,
-    updated_at: Time.now - rand(1..30).days
-  )
-  carts << cart
-end
-
-# Create fake products
-products = []
-10.times do 
-  product = Product.create!(
-    title: Faker::Beer.name,
-    category: Faker::Beer.style,
-    subtitle: Faker::Beer.alcohol,
-    description: Faker::Beer.malts, #=> "Rye malt"
-    price: rand(1.0...7.0),
-    created_at: Time.now - rand(1..30).days,
-    updated_at: Time.now - rand(1..30).days
-  )
-  products << product
-end
-
-# Create fake cart-product associations
-carts_products = []
-10.times do
-  cart_product = CartsProduct.create!(
-    cart_id: carts.sample.id,
-    product_id: products.sample.id,
-    quantity: rand(5..15),
-    created_at: Time.now - rand(1..30).days,
-    updated_at: Time.now - rand(1..30).days
-  )
-  carts_products << cart_product
 end
 
 # Create orders
-orders = []
-10.times do 
+10.times do
   order = Order.create!(
-    bundle_order_id: rand(1..10),
-    bundle_order_time: Time.now + rand(1..30).days,
-    status: "test", 
-    startedate: Time.now,
-    total_price: rand(1.0..25.0), 
-    user_id: users.sample.id,
-    created_at: Time.now - rand(1..30).days,
-    updated_at: Time.now - rand(1..30).days
+    status: Faker::Lorem.word,
+    startedate: Faker::Date.backward(days: 30),
+    total_price: Faker::Number.decimal(l_digits: 2),
+    user: User.all.sample
   )
-  orders << order
 end
 
-# Create order items
-order_items = []
+# Create carts
 10.times do
-  order_item = OrderItem.create!(
-    order_id: orders.sample.id,
-    product_id: products.sample.id,
-    quantity: rand(1..5),
-    created_at: Time.now - rand(1..30).days,
-    updated_at: Time.now - rand(1..30).days
+  cart = Cart.create!(
+    startedate: Faker::Date.backward(days: 30),
+    total_price: Faker::Number.decimal(l_digits: 2),
+    user: User.all.sample
   )
-  order_items << order_item
 end
+
+# Create products
+10.times do
+  product = Product.create!(
+    title: Faker::Commerce.product_name,
+    category: Faker::Commerce.department(max: 1, fixed_amount: true),
+    subtitle: Faker::Lorem.sentence,
+    description: Faker::Lorem.paragraph,
+    price: Faker::Commerce.price(range: 0..100.0, as_string: false)
+  )
+end
+
+# Create cart products
+10.times do
+  CartProduct.create!(
+    cart: Cart.all.sample,
+    product: Product.all.sample,
+    quantity: Faker::Number.between(from: 1, to: 10)
+  )
+end
+    
+# Create order products
+10.times do
+  OrderProduct.create!(
+    order: Order.all.sample,
+    product: Product.all.sample,
+    quantity: Faker::Number.between(from: 1, to: 10)
+  )
+end
+ 
 
 puts "Seed data created successfully!"
