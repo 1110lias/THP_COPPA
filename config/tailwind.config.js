@@ -14,6 +14,10 @@ module.exports = {
         'serif': ['Scope One', ...defaultTheme.fontFamily.serif],
         'mono': ['Thasadith', ...defaultTheme.fontFamily.mono]
       },
+      colors: {
+        'white': '#f6e8eA',
+        'black': '#171414'
+      }
     },
   },
   plugins: [
