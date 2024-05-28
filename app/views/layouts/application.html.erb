@@ -14,9 +14,14 @@
     
   </head>
 
-  <body>
-    <main class="prose mx-auto">
+  <body class="flex flex-col h-screen">
+
+    <%= render partial: "shared/navbar" %>
+
+    <main class="prose mx-auto flex-grow">
       <%= yield %>
     </main>
+
+    <%= render partial: "shared/footer" %>
   </body>
 </html>
