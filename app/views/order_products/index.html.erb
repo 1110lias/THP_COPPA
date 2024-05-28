@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Order products</h1>
+
+<div id="order_products">
+  <% @order_products.each do |order_product| %>
+    <%= render order_product %>
+    <p>
+      <%= link_to "Show this order product", order_product %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New order product", new_order_product_path %>

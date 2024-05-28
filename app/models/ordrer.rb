@@ -1,0 +1,2 @@
+class Ordrer < ApplicationRecord
+end
