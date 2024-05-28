@@ -280,8 +280,8 @@ DEPENDENCIES
   bootsnap
   capybara
   debug
-  devise (~> 4.9)
-  faker (~> 3.3)
+  devise
+  faker
   jbuilder
   jsbundling-rails
   pg (~> 1.1)
