@@ -1,10 +1,11 @@
-<p style="color: green"><%= notice %></p>
+<!-- app/views/users/show.html.erb -->
+<h1>User Profile</h1>
 
-<%= render @user %>
-
-<div>
-  <%= link_to "Edit this user", edit_user_path(@user) %> |
-  <%= link_to "Back to users", users_path %>
-
-  <%= button_to "Destroy this user", @user, method: :delete %>
+<div class="profile-container">
+  <p><strong>Name:</strong> <%= @user.first_name %></p>
+  <p><strong>Email:</strong> <%= @user.email %></p>
+  <p><strong>Joined:</strong> <%= @user.created_at.strftime("%B %d, %Y") %></p>
+  <!-- Ajoutez d'autres champs de profil si nécessaire -->
 </div>
+
+<%= link_to "Edit Profile", edit_user_path(@user), class: "btn btn-primary" %>
