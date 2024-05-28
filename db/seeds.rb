@@ -7,3 +7,15 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+require "faker"
+
+Cart.destroy_all
+Order.destroy_all
+Product.destroy_all
+User.destroy_all
+
+#Create Carts
+
+carts = []
+10.times do
+    cart = Cart.create!(total_price: random(1..1000))
