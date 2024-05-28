@@ -66,8 +66,10 @@ group :test do
   gem "selenium-webdriver"
 end
 
-gem "faker", "~> 3.3"
+gem "faker" 
 
-gem "devise", "~> 4.9"
+gem "devise"
+
+gem "tailwindcss-rails", "~> 2.6"
 
 gem "table_print"

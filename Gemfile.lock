@@ -232,6 +232,18 @@ GEM
       railties (>= 6.0.0)
     stringio (3.1.0)
     strscan (3.1.0)
+    tailwindcss-rails (2.6.0)
+      railties (>= 7.0.0)
+    tailwindcss-rails (2.6.0-aarch64-linux)
+      railties (>= 7.0.0)
+    tailwindcss-rails (2.6.0-arm-linux)
+      railties (>= 7.0.0)
+    tailwindcss-rails (2.6.0-arm64-darwin)
+      railties (>= 7.0.0)
+    tailwindcss-rails (2.6.0-x86_64-darwin)
+      railties (>= 7.0.0)
+    tailwindcss-rails (2.6.0-x86_64-linux)
+      railties (>= 7.0.0)
     table_print (1.5.7)
     thor (1.3.1)
     timeout (0.4.1)
@@ -269,8 +281,8 @@ DEPENDENCIES
   bootsnap
   capybara
   debug
-  devise (~> 4.9)
-  faker (~> 3.3)
+  devise
+  faker
   jbuilder
   jsbundling-rails
   pg (~> 1.1)
@@ -279,6 +291,7 @@ DEPENDENCIES
   selenium-webdriver
   sprockets-rails
   stimulus-rails
+  tailwindcss-rails (~> 2.6)
   table_print
   turbo-rails
   tzinfo-data
