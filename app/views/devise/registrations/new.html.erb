@@ -1,5 +1,5 @@
 <div class="max-w-lg bg-white border border-gray-200 rounded-lg shadow flex flex-col m-6 p-5">
-  <h2 class="text-2xl font-bold tracking-tight text-gray-900 mb-4">Sign in</h2>
+  <h2 class="text-2xl font-bold tracking-tight text-gray-900 mb-4 flex justify-center">Sign up</h2>
 
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: 'space-y-4' }) do |f| %>
     <%= render "devise/shared/error_messages", resource: resource %>
@@ -25,7 +25,7 @@
     </div>
 
     <div class="actions flex justify-center">
-      <%= f.submit "Sign in", class: 'w-1/2 px-4 py-2 text-white btn-secondary' %>
+      <%= f.submit "Sign up", class: 'w-1/2 px-4 py-2 text-white btn-secondary' %>
     </div>
   <% end %>
 </div>
