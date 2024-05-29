@@ -45,11 +45,11 @@
     @apply outline outline-2 outline-amber-500 hover:outline-amber-400 hover:text-zinc-500 text-zinc-700 font-bold py-2 px-4 rounded-full;
   }
 
-  .btn-primary-arrow-right {
+  .btn-primary-icon {
     @apply bg-pink-900 hover:bg-pink-800 text-white font-bold py-2 px-3 rounded-full;
   }
 
-  .btn-secondary-arrow-right {
+  .btn-secondary-icon {
     @apply bg-amber-500  hover:bg-amber-400 text-white font-bold py-2 px-3 rounded-full;
   }
 
