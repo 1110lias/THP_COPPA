@@ -15,7 +15,7 @@ module.exports = {
         'mono': ['Thasadith', ...defaultTheme.fontFamily.mono]
       },
       colors: {
-        'white': '#f6e8eA',
+        'white': '#FFFCFC',
         'black': '#171414'
       }
     },

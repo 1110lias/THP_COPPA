@@ -5,7 +5,6 @@
 @tailwind utilities;
 
 
-
 @layer components {
 
   /* Fonts */
@@ -20,7 +19,11 @@
   h2, h3, h4, h5, h6 {
     @apply font-serif;
   }
-  
+
+  .logo {
+    width: 30%;
+  }
+
   /* Buttons */
   .btn {
     @apply no-underline;
@@ -31,7 +34,7 @@
   }
   
   .btn-outline-primary {
-    @apply outline outline-2 outline-pink-900 hover:text-zinc-600 text-zinc-700 font-bold py-2 px-4 rounded-full;
+    @apply outline outline-2 outline-pink-900 hover:outline-pink-800 hover:text-zinc-500 text-zinc-700 font-bold py-2 px-4 rounded-full;
   }
 
   .btn-secondary {
@@ -39,7 +42,16 @@
   }
 
   .btn-outline-secondary {
-    @apply outline outline-2 outline-amber-500 hover:text-zinc-600 text-zinc-700 font-bold py-2 px-4 rounded-full;
+    @apply outline outline-2 outline-amber-500 hover:outline-amber-400 hover:text-zinc-500 text-zinc-700 font-bold py-2 px-4 rounded-full;
   }
+
+  .btn-primary-arrow-right {
+    @apply bg-pink-900 hover:bg-pink-800 text-white font-bold py-2 px-3 rounded-full;
+  }
+
+  .btn-secondary-arrow-right {
+    @apply bg-amber-500  hover:bg-amber-400 text-white font-bold py-2 px-3 rounded-full;
+  }
+
 }
 

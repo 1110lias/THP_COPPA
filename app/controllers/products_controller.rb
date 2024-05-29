@@ -1,4 +1,5 @@
 class ProductsController < ApplicationController
+  before_action :require_admin, only: [:edit, :update, :destroy]
   before_action :set_product, only: %i[ show edit update destroy ]
 
   # GET /products or /products.json
@@ -58,6 +59,9 @@ class ProductsController < ApplicationController
   end
 
   private
+    def require_admin
+      redirect_to root_path, alert: "You are not authorized to perform this action." unless current_user.isadmin?
+    end
     # Use callbacks to share common setup or constraints between actions.
     def set_product
       @product = Product.find(params[:id])
