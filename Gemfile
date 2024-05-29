@@ -73,3 +73,5 @@ gem "devise"
 gem "tailwindcss-rails", "~> 2.6"
 
 gem "table_print"
+
+gem "foreman", "~> 0.88.1"
