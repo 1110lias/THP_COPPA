@@ -1,26 +1,26 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Products</h1>
+<h1 class="text-3xl font-bold mb-4">Products</h1>
 
-<div id="products">
+<div id="products" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
   <% @products.each do |product| %>
-    <%= render product %>
-    <p>
-      <%= link_to "Show this product", product %>
-    </p>
+    <div class="bg-gray-100 shadow-md rounded-lg overflow-hidden">
+      <div class="px-8 py-6">
+        <%= render product %>
+      </div>
+      <div class="flex justify-between items-center px-6">
+        <%= link_to "Show", product, class: "btn btn-primary" %>
+        <div class="flex space-x-2">
+          <%= link_to "Edit", edit_product_path(product), class: "btn btn-secondary" %>
+          <%= button_to "Destroy", product, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+        </div>
+      </div>
+    </div>
   <% end %>
 </div>
 
-
-<%= link_to "New product", new_product_path, class: "btn btn-primary" %>
+<%= link_to "New product", new_product_path, class: "btn btn-primary mt-4" %>
 <br><br>
-<%= link_to "New product", new_product_path, class: "btn btn-secondary" %>
-<br><br>
-<%= link_to "New product", new_product_path, class: "btn btn-outline-primary" %>
-<br><br>
-<%= link_to "New product", new_product_path, class: "btn btn-outline-secondary" %>
-<br><br>
-
 
 <div>checkboxes</div>
 
@@ -35,4 +35,3 @@
     <label for="bordered-checkbox-1" class="w-full py-4 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Charcuterie</label>
   </div>
 </div>
-

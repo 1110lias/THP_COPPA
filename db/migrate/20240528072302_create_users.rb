@@ -1,5 +1,5 @@
 class CreateUsers < ActiveRecord::Migration[7.1]
-  def change
+  def change #ERREUR CETTE MIGRATION AURAIT DU ETRE FAITE AVEC DEVISE! DES CORRECTIONS ONT ETE FAITE DANS UNE AUTRE MIGRATION
     create_table :users do |t|
       t.string :first_name
       t.string :last_name
