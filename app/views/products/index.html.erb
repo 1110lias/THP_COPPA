@@ -2,28 +2,6 @@
 
 <h1>Products</h1>
 
-<div id="products">
-  <% @products.each do |product| %>
-    <%= render product %>
-    <p>
-      <%= link_to "Show this product", product %>
-    </p>
-  <% end %>
-</div>
-
-
-<%= link_to "New product", new_product_path, class: "btn btn-primary" %>
-<br><br>
-<%= link_to "New product", new_product_path, class: "btn btn-secondary" %>
-<br><br>
-<%= link_to "New product", new_product_path, class: "btn btn-outline-primary" %>
-<br><br>
-<%= link_to "New product", new_product_path, class: "btn btn-outline-secondary" %>
-<br><br>
-
-
-<div>checkboxes</div>
-
 <div class="flex flex-row prose">
   <div class="flex items-center ps-4 border border-gray-200 rounded dark:border-gray-700 px-4">
     <input id="bordered-checkbox-1" type="checkbox" value="" name="bordered-checkbox" class="w-4 h-4 text-amber-500 bg-gray-100 border-gray-300 rounded focus:ring-amber-500 dark:focus:ring-amber-500 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
@@ -35,4 +13,21 @@
     <label for="bordered-checkbox-1" class="w-full py-4 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Charcuterie</label>
   </div>
 </div>
+
+
+<div id="products">
+  <% @products.each do |product| %>
+    <%= render product %>
+    <p>
+      <%= link_to "Show this product", product %>
+    </p>
+  <% end %>
+</div>
+
+<%= render partial: "shared/card" %>
+
+<%= link_to "New product", new_product_path, class: "btn btn-primary" %>
+
+
+
 
