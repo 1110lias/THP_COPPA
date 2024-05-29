@@ -3,6 +3,19 @@
 
   <%= render @product %>
 
+  <% @products.each do |product| %>
+  <div>
+    <h2><%= product.name %></h2>
+    <p><%= number_to_currency(product.price) %></p>
+    <%= form_with url: cart_items_path, method: :post do %>
+      <%= hidden_field_tag :product_id, product.id %>
+      <%= number_field_tag :quantity, 1 %>
+      <%= submit_tag "Add to Cart" %>
+    <% end %>
+  </div>
+<% end %>
+
+
   <div class="mt-4">
     <%= link_to "Edit this product", edit_product_path(@product), class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2" %> |
     <%= link_to "Back to products", products_path, class: "bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded mr-2" %>

@@ -2,9 +2,9 @@ Rails.application.routes.draw do
   devise_for :users
   resources :order_products
   resources :orders
-  resources :cart_products
+  resources :cart_products, only: [:create, :update, :destroy]
   resources :products
-  resources :carts
+  resources :carts, only: [:show]
   resources :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

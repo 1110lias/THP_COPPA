@@ -8,3 +8,33 @@
 
   <%= button_to "Destroy this cart", @cart, method: :delete %>
 </div>
+
+<h1>Your Shopping Cart</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Product</th>
+      <th>Quantity</th>
+      <th>Price</th>
+      <th>Subtotal</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @cart.cart_items.each do |item| %>
+      <tr>
+        <td><%= item.product.name %></td>
+        <td><%= item.quantity %></td>
+        <td><%= number_to_currency(item.product.price) %></td>
+        <td><%= number_to_currency(item.total_price) %></td>
+        <td>
+          <%= link_to 'Remove', cart_item_path(item), method: :delete %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h2>Total: <%= number_to_currency(@cart.total_price) %></h2>
+
