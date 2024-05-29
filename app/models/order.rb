@@ -1,6 +1,6 @@
 class Order < ApplicationRecord
-  has_many :order_products_join
-  has_many :products, through: :order_products_join
+  has_many :order_products_join, dependent: :destroy
+  has_many :products, through: :order_products_join, dependent: :destroy
 
   belongs_to :user
 
@@ -12,6 +12,6 @@ class Order < ApplicationRecord
   end
 
   def admin_confirmation_send
-    OrderMailer.order_admin_email(self).deliver_now
+    OrderMailer.admin_notification_email().deliver_now
   end
 end

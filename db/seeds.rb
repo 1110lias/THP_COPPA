@@ -14,12 +14,13 @@
 require "faker"
 
 # Destroy existing records to start fresh
-CartProduct.destroy_all
+OrderProduct.destroy_all
 Order.destroy_all
+CartProduct.destroy_all
 Product.destroy_all
 Cart.destroy_all
 User.destroy_all
-OrderProduct.destroy_all
+
 
 # Create users
 10.times do
