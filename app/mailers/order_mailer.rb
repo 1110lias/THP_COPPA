@@ -4,6 +4,7 @@ class OrderMailer < ApplicationMailer
     def order_user_email(user)
       #on récupère l'instance user pour ensuite pouvoir la passer à la view en @user
       @user = user 
+      puts "order user mailer executed"
       #@order_number = order_number - to add for V2
       #@total_price = total_price
   
@@ -17,6 +18,7 @@ class OrderMailer < ApplicationMailer
     def order_admin_email(admin)
         #on récupère l'instance admin et user pour renseigner le nom de l'utilisateur a l'admin dans l'email de confirmation.
         @admin = admin
+        puts "order admin mailer executed"
         #@user = user
         #@total_price = total_price
     
