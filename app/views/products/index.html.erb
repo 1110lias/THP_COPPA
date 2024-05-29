@@ -1,7 +1,10 @@
 <div class="flex flex-col justify-center items-center">
   <h1 class=" my-4">Products</h1>
 
+
   <%= render partial: "checkboxes"%>
+
+  <%= link_to "New product", new_product_path, class: "btn btn-primary my-4" %>
 
   <div id="products">
     <% @products.each do |product| %>
@@ -12,19 +15,6 @@
     <% end %>
   </div>
 
-  <%= render partial: "shared/card" %>
 
-  <%= link_to "New product", new_product_path, class: "btn btn-primary" %>
 
-  <br><br>
-
-  <%= link_to new_product_path, class: "btn btn-primary-arrow-right" do %>
-    <i class="fa-solid fa-arrow-right"></i>
-  <% end %>
-
-  <br><br>
-
-  <%= link_to new_product_path, class: "btn btn-secondary-arrow-right" do %>
-    <i class="fa-solid fa-arrow-right"></i>
-  <% end %>
 </div>
