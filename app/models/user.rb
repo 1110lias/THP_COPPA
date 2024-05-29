@@ -6,7 +6,6 @@ class User < ApplicationRecord
   has_many :orders, dependent: :destroy
   has_one :cart, dependent: :destroy
   validates :email, presence: true, uniqueness: true
-  validates :phone_number, presence: true, uniqueness: true\
 
   after_create :welcome_send
 

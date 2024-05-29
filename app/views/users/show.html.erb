@@ -2,11 +2,28 @@
 <h1>User Profile</h1>
 
 <div class="profile-container">
-  <p><strong>Name:</strong> <%= @user.first_name %></p>
-  <p><strong>Name:</strong> <%= @user.last_name %></p>
+  <p><strong>First Name:</strong> <%= @user.first_name %></p>
+  <p><strong>Last Name:</strong> <%= @user.last_name %></p>
   <p><strong>Email:</strong> <%= @user.email %></p>
   <p><strong>Joined:</strong> <%= @user.created_at.strftime("%B %d, %Y") %></p>
-  <!-- Ajoutez d'autres champs de profil si nécessaire -->
+  <!-- Add other profile fields if necessary -->
+</div>
+<%= link_to "Edit Profile", edit_user_path(@user), class: "btn btn-primary" %>
+<h2>Previous Orders</h2>
+<div class="orders-container">
+  <% if @orders.present? %>
+    <ul>
+      <% @orders.each do |order| %>
+        <li>
+          <strong>Order ID:</strong> <%= order.id %><br>
+          <strong>Date:</strong> <%= order.created_at.strftime("%B %d, %Y") %><br>
+          <strong>Total:</strong> $<%= order.total_price %>
+          <!-- Add other order details if necessary -->
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>No previous orders found.</p>
+  <% end %>
 </div>
 
-<%= link_to "Edit Profile", edit_user_path(@user), class: "btn btn-primary" %>
