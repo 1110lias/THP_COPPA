@@ -4,13 +4,13 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1>Bonjour <%= @user.first_name %> et merci d'avoir commandé sur Coppa & Gabana</h1>
+    <h1>Bonjour <%= @order.user.first_name %> et merci d'avoir commandé sur Coppa & Gabana</h1>
     <p>
       Cet email t'est adressé pour te confirmer la réception de ta commande.
     </p>
     <p>
       Pour accéder à ton espace client et vérifier le statut de cette dernière, connecte-toi via : <%= @url %>.
     </p>
-    <p> Ciao, <%= @user.first_name %></p>
+    <p> Ciao, <%= @order.user.first_name %></p>
   </body>
 </html>
