@@ -12,15 +12,15 @@
       <h2 class="text-3xl mt-3">Admin Options</h2>
     <div class="bg-white border border-gray-200 rounded-lg shadow flex flex-col justify-center items-center mt-2 mb-6 p-2">
       <div class="p-6">
-        <%= link_to 'Manage Users', users_path, class: 'btn btn-outline-secondary mx-2' %>
-        <%= link_to 'Admin Dashboard', "admin_dashboard_path", class: 'btn btn-outline-primary mx-2' %>
+        <%= link_to 'Manage Users', users_path, class: 'btn btn-secondary mx-2' %>
+        <%= link_to 'Admin Dashboard', "admin_dashboard_path", class: 'btn btn-primary mx-2' %>
         <div class="flex flex-row justify-center items-center mt-4">
           <%= form_with(model: @user, url: update_admin_status_user_path(@user), method: :patch, local: true) do |form| %>
             <div class="form-group mx-5 my-2">
               <%= form.label :isadmin, 'Admin Status' %>
               <%= form.check_box :isadmin %>
             </div>
-            <%= form.submit 'Update Admin Status', class: 'btn btn-danger' %>
+            <%= form.submit 'Update Admin Status', class: 'btn btn-success' %>
           <% end %>
         </div>
       </div>
@@ -52,7 +52,7 @@
           </tbody>
         </table>
       <% else %>
-        <p class="p-4 text-center">No previous orders found.</p>
+        <p class="p-4 text-center">No previous orders.</p>
       <% end %>
     </div>
   </div>

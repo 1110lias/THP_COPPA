@@ -9,10 +9,12 @@
     
     <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
       <% if user_signed_in? %>
-        <%= link_to "Profile", user_path(current_user), class: "btn-primary" %>
+        <%= link_to user_path(current_user), class: "btn-primary mr-4 hover:text-amber-400 hover:bg-pink-900" do %>
+          <i class="fa-solid fa-user"></i> Profile
+        <% end %>
         <%= button_to "Logout", destroy_user_session_path, method: :delete, class: "btn-secondary" %>
       <% else %>
-        <%= link_to "Login", new_user_session_path, class: "btn-primary mx-4" %>
+        <%= link_to "Login", new_user_session_path, class: "btn-primary mx-4 pr-4" %>
         <%= link_to "Sign Up", new_user_registration_path, class: "btn-secondary mx-4" %>
       <% end %>
       <button data-collapse-toggle="navbar-sticky" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-white rounded-lg md:hidden hover:bg-amber-500 focus:outline-none focus:ring-2 focus:bg-amber-500 dark:text-gray-400 dark:hover:bg-amber-500 dark:focus:bg-amber-500" aria-controls="navbar-sticky" aria-expanded="false">
@@ -23,14 +25,16 @@
       </button>
     </div>
     <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
-      <ul class="flex flex-col p-4 md:p-0 mt-4 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 font-sans">
+      <ul class="flex flex-col p-4 md:p-0 mt-4 md:space-x-14 rtl:space-x-reverse md:flex-row md:mt-0 font-sans">
         <li>
           <%= link_to root_path, class: 'block py-2 px-3 text-white font-bold hover:text-amber-400', aria_current: 'page' do %>
+            <i class="fa-solid fa-home"></i>
             Home
           <% end %>
         </li>
         <li>
           <%= link_to "cart", class: 'block py-2 px-3 text-white font-bold hover:text-amber-400', aria_current: 'page' do %>
+            <i class="fa-solid fa-cart-shopping"></i>
             Cart
           <% end %>
         </li>
