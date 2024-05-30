@@ -26,10 +26,10 @@
         <i class="fa-solid fa-arrow-right"></i>
       <% end %>
 
-      <div class="flex">
-        <%= link_to "Edit", edit_product_path(product), class: "btn btn-secondary mx-2" %>
-        <%= button_to "Destroy", product, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
-      </div>
+        <div class="flex">
+          <%= link_to "Edit", edit_product_path(product), class: "btn btn-secondary mx-2" %>
+          <%= button_to "Delete", product, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+        </div>
     </div>
   </div>
 </div>
