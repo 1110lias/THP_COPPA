@@ -12,4 +12,7 @@ class User < ApplicationRecord
   def welcome_send
     UserMailer.welcome_email(self).deliver_now
   end
+  def last_admin?
+    User.where(isadmin: true).count == 1 && self.isadmin?
+  end
 end
