@@ -198,7 +198,7 @@ parmiggiano = Product.create!(
   Le nom du fromage Parmesan dérive de ses zones de production : les provinces de Parme, Reggio Emilia, le côté ouest de Bologne et Modène en Emilie-Romagne, ainsi qu'une partie de Mantoue en Lombardie, sur la rive sud-est du fleuve Pô.",
   price: 35
   )
-  parmiggiano.photo.attach( io: File.open(Rails.root.join('app/assets/images/products/parmiggiano_01.png')),
+  parmiggiano.photo.attach( io: File.open(Rails.root.join('app/assets/images/products/pecorino_01.png')),
     filename: 'pecorino_01.png')
 
 ricotta = Product.create!(
