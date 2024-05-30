@@ -1,49 +1,62 @@
-<!-- app/views/products/_form.html.erb -->
 <%= form_with(model: product, local: true) do |form| %>
   <% if product.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
-
-      <ul>
-      <% product.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
+    <div id="error_explanation" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4">
+      <h2 class="font-bold"><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
+      <ul class="mt-2">
+        <% product.errors.full_messages.each do |message| %>
+          <li class="list-disc list-inside"><%= message %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
+<div class= "w-full bg-slate-50 rounded-lg shadow-lg m-6 p-8">
+
+  <div class="text-3xl text-white font-bold my-8 bg-pink-950 rounded flex justify-center items-center h-32">
+    <h1>Nouveau produit !</h1>
   </div>
 
-<div class="field">
-    <%= form.label :category %>
-    <%= form.select :category, options_for_select(["Charcuterie", "Fromage"], selected: product.category), {}, class: "form-control" %>
+  <div class="mb-4">
+    <%= form.label :title, class: "block text-gray-700 text-lg font-bold mb-2 " %>
+    <%= form.text_field :title, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700  hover:bg-slate-50" %>
   </div>
 
-  <div class="field">
-    <%= form.label :subtitle %>
-    <%= form.text_field :subtitle %>
+  <div class="mb-4">
+    <%= form.label :category, class: "block text-gray-700 text-lg font-bold mb-2" %>
+    <%= form.select :category, options_for_select(["Charcuterie", "Fromage"], selected: product.category), {}, class: "block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded   hover:bg-slate-50" %>
   </div>
 
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description %>
+  <div class="mb-4 text-wrap">
+    <%= form.label :subtitle, class: "block text-gray-700 text-lg font-bold mb-2" %>
+    <%= form.text_area :subtitle, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 h-12 hover:bg-slate-50 text-wrap" %>
   </div>
 
-  <div class="field">
-    <%= form.label :price %>
-    <%= form.text_field :price %>
+  <div class="mb-4">
+    <%= form.label :description, class: "block text-gray-700 text-lg font-bold mb-2" %>
+    <%= form.text_area :description, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 h-32 hover:bg-slate-50 text-wrap" %>
   </div>
 
-
-  <div class="field">
-    <%= form.label :photo %>
-    <%= form.file_field :photo %>
+  <div class="mb-4">
+    <%= form.label :price, class: "block text-gray-700 text-lg font-bold mb-2" %>
+    <%= form.text_field :price, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 hover:bg-slate-50" %>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="mb-4">
+    <%= form.label :photo, class: "block text-gray-700  font-bold mb-2" %>
+    <%= form.file_field :photo, class: "block w-full text-gray-700 py-2 px-3 border rounded hover:bg-slate-50" %>
   </div>
+
+  <div class="actions flex justify-center items-center mt-10">
+    <%= form.submit class: "btn btn-success mt-10" %>
+  </div>
+
+    <div class="flex flex-col items-center space-y-2 mt-10">
+    <%= link_to products_path, class: "btn btn-primary-icon" do %>
+      <i class="fa-solid fa-arrow-left"></i>
+    <% end %>
+    <h4>Back to products</h4>
+  </div>
+</div>
+
 <% end %>
+`

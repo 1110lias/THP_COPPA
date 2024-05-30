@@ -190,7 +190,7 @@ pecorino = Product.create!(
   description: "En réalité, il existe plusieurs variétés du fromage Pecorino et chacun dispose d’une appellation AOP. Celui originaire de Sardaigne est appelé Pecorino Sardo ou Fiore Sardo. Il en existe d’ailleurs deux types : le Pecorino Sardo frais ou Dolce et le Pecorino Sardo affiné ou Maturo. La différence entre eux réside dans leurs techniques de traitement, leur taille et leur saveur.",
   price: 14
   )
-  caciocavallo.photo.attach( io: File.open(Rails.root.join('app/assets/images/products/pecorino_01.png')),
+  pecorino.photo.attach( io: File.open(Rails.root.join('app/assets/images/products/pecorino_01.png')),
     filename: 'pecorino_01.png')
 
 parmiggiano = Product.create!(
@@ -201,8 +201,8 @@ parmiggiano = Product.create!(
   Le nom du fromage Parmesan dérive de ses zones de production : les provinces de Parme, Reggio Emilia, le côté ouest de Bologne et Modène en Emilie-Romagne, ainsi qu'une partie de Mantoue en Lombardie, sur la rive sud-est du fleuve Pô.",
   price: 35
   )
-  parmiggiano.photo.attach( io: File.open(Rails.root.join('app/assets/images/products/pecorino_01.png')),
-    filename: 'pecorino_01.png')
+  parmiggiano.photo.attach( io: File.open(Rails.root.join('app/assets/images/products/parmiggiano_01.png')),
+    filename: 'parmiggiano_01.png')
 
 ricotta = Product.create!(
   title: "Ricotta",
