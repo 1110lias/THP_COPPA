@@ -1,14 +1,10 @@
 <!-- app/views/carts/show.html.erb -->
 
 <div id="<%= dom_id @cart %>">
-  <p>
-    <strong>User:</strong>
-    <%= @cart.user.first_name %>
-  </p>
 
   <p>
     <strong>Total Price:</strong>
-    <%= number_to_currency(@cart.total_price) %>
+    <%= number_to_currency(@cart.cart_products.sum { |cart_product| cart_product.product.price }) %>
   </p>
 
   <h2>Cart Products</h2>
@@ -17,7 +13,7 @@
       <p>
         <strong>Product:</strong>
         <%= cart_product.product.title %>
-        <%= cart_product.product.price %>
+        <%= number_to_currency(cart_product.product.price) %>
       </p>
 
       <!-- Add other details as needed -->
@@ -25,7 +21,7 @@
   <% end %>
 </div>
 
-<div>
+<!--<div>
   <%= link_to "Edit this cart", edit_cart_path(@cart) %> |
   <%= button_to "Destroy this cart", @cart, method: :delete %>
-</div>
+</div>-->
