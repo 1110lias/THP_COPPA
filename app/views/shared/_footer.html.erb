@@ -10,22 +10,7 @@
 
         <ul class="flex flex-wrap my-2 mb-6 text-sm font-medium text-white sm:mb-0">
         <li>
-            <%= link_to '#', class: 'hover:underline me-4 md:me-6' do %>
-            About
-            <% end %>
-        </li>
-        <li>
-            <%= link_to '#', class: 'hover:underline me-4 md:me-6' do %>
-            Privacy Policy
-            <% end %>
-        </li>
-        <li>
-            <%= link_to '#', class: 'hover:underline me-4 md:me-6' do %>
-            Licensing
-            <% end %>
-        </li>
-        <li>
-            <%= link_to '#', class: 'hover:underline' do %>
+            <%= mail_to 'hello@coppaandgabana', class: 'hover:underline' do %>
             Contact
             <% end %>
         </li>
