@@ -1,26 +1,29 @@
-<h1>All Users</h1>
+<h1 class="text-2xl font-bold text-center mt-4 py-4">Users</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Email</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @users.each do |user| %>
+<div class="max-w-4xl mx-auto bg-white shadow-md rounded-lg overflow-hidden my-6">
+  <table class="min-w-full bg-white">
+    <thead>
       <tr>
-        <td><%= user.first_name %> <%= user.last_name %></td>
-        <td><%= user.email %></td>
-        <td>
-          <%= link_to 'Show', user_path(user) %>
-          <% if current_user.isadmin? %>
-            <%= link_to 'Edit', edit_user_path(user) %>
-            <%= link_to 'Delete', user_path(user), method: :delete, data: { confirm: 'Are you sure?' } %>
-          <% end %>
-        </td>
+        <th class="py-2 px-4 border-b-2 border-gray-200 bg-red-100 text-center leading-4 font-medium text-gray-800 uppercase tracking-wider text-lg">Name</th>
+        <th class="py-2 px-4 border-b-2 border-gray-200 bg-red-100 text-center leading-4 font-medium text-gray-800 uppercase tracking-wider text-lg">Email</th>
+        <th class="py-2 px-4 border-b-2 border-gray-200 bg-red-100 text-center leading-4 font-medium text-gray-800 uppercase tracking-wider text-lg">Actions</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody class="bg-white">
+      <% @users.each do |user| %>
+        <tr>
+          <td class="py-4 px-6 border-b border-gray-200"><%= user.first_name %> <%= user.last_name %></td>
+          <td class="py-4 px-6 border-b border-gray-200"><%= user.email %></td>
+          <td class="py-4 px-6 border-b border-gray-200">
+            <%= link_to 'Show', user_path(user), class: 'btn btn-primary mr-2' %>
+            <% if current_user.isadmin? %>
+              <%= link_to 'Edit', edit_user_path(user), class: 'btn btn-secondary mr-2' %>
+              <%= link_to 'Delete', user_path(user), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+

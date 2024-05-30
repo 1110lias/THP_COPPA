@@ -4,12 +4,16 @@ class ProductsController < ApplicationController
 
   # GET /products or /products.json
   def index
-    @products = Product.all
+    if params[:category_ids].present?
+      @products = Product.where(category: params[:category_ids])
+    else
+      @products = Product.all
+    end
   end
 
   # GET /products/1 or /products/1.json
   def show
-    @user = User.find(params[:id])
+
   end
 
   # GET /products/new
