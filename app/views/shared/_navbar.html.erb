@@ -9,7 +9,7 @@
     
     <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
       <% if user_signed_in? %>
-        <%= link_to "Profile", user_path(current_user), class: "btn-secondary" %>
+        <%= link_to "Profile", user_path(current_user), class: "btn-primary" %>
         <%= button_to "Logout", destroy_user_session_path, method: :delete, class: "btn-secondary" %>
       <% else %>
         <%= link_to "Login", new_user_session_path, class: "btn-primary mx-4" %>
