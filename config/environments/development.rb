@@ -1,5 +1,7 @@
 require "active_support/core_ext/integer/time"
 
+#FLY_API_TOKEN
+
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -74,3 +76,13 @@ Rails.application.configure do
   # Raise error when a before_action's only/except options reference missing actions
   config.action_controller.raise_on_missing_callback_actions = true
 end
+
+ActionMailer::Base.smtp_settings = {
+  :user_name => ENV['MAILJET_LOGIN'],
+  :password => ENV['MAILJET_PWD'],
+  :domain => 'monsite.fr',
+  :address => 'in-v3.mailjet.com',
+  :port => 587,
+  :authentication => :plain,
+  :enable_starttls_auto => true
+}

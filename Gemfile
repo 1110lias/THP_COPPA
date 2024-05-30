@@ -75,3 +75,7 @@ gem "tailwindcss-rails", "~> 2.6"
 gem "table_print"
 
 gem "foreman", "~> 0.88.1"
+
+gem "dockerfile-rails", ">= 1.6", :group => :development
+
+gem 'dotenv-rails', groups: [:development, :test, :production]
