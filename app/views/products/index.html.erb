@@ -6,6 +6,8 @@
 
   <%= render partial: "checkboxes"%>
 
+  
+
   <% if user_signed_in? && current_user.isadmin? %>
   <%= link_to "New product", new_product_path, class: "btn btn-success my-4" %>
   <% end %>
