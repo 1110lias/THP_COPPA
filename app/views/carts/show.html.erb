@@ -1,25 +1,26 @@
-<!-- app/views/carts/show.html.erb -->
-
-<div id="<%= dom_id @cart %>">
-
-  <p>
-    <strong>Total Price:</strong>
-    <%= number_to_currency(@cart.cart_products.sum { |cart_product| cart_product.product.price }) %>
-  </p>
-
-  <h2>Cart Products</h2>
+<div id="<%= dom_id @cart %>" class="max-w-3xl mx-auto bg-white rounded-lg shadow-md flex flex-col justify-center my-6 p-8">
+  <h2 class="text-2xl font-bold text-gray-800 mb-4 mt-2 text-center">Cart</h2>
   <% @cart.cart_products.each do |cart_product| %>
-    <div id="<%= dom_id cart_product %>">
-      <p>
-        <strong>Product:</strong>
-        <%= cart_product.product.title %>
-        <%= number_to_currency(cart_product.product.price) %>
+    <div id="<%= dom_id cart_product %>" class="mb-4 p-4 border-b border-gray-200">
+      <p class="flex justify-between items-center text-lg text-gray-700">
+        <span>
+          <strong>Product: </strong> <%= cart_product.product.title %>
+        </span>
+        <span class="text-amber-500 pl-8"><%= number_to_currency(cart_product.product.price) %></span>
       </p>
-
-      <!-- Add other details as needed -->
     </div>
   <% end %>
+  <p class="text-xl font-semibold text-gray-800 mt-6 flex justify-between items-center">
+    <span>Total Price: </span>
+    <span class="text-amber-500"><%= number_to_currency(@cart.cart_products.sum { |cart_product| cart_product.product.price }) %></span>
+  </p>
+
+  <div class="mt-6 flex justify-center">
+    <%= link_to "Checkout", products_path, class: "btn btn-success text-center" %>
+  </div>
 </div>
+
+
 
 <!--<div>
   <%= link_to "Edit this cart", edit_cart_path(@cart) %> |

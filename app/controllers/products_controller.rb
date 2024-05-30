@@ -1,6 +1,7 @@
 class ProductsController < ApplicationController
   before_action :require_admin, only: [:edit, :update, :destroy]
-  before_action :set_product, only: %i[ show edit update destroy ]
+  before_action :set_product, only: %i[show edit update destroy]
+  before_action :authenticate_user!, only: [:add_to_cart] # Ensure user is authenticated before accessing add_to_cart action
 
   # GET /products or /products.json
   def index
@@ -13,7 +14,6 @@ class ProductsController < ApplicationController
 
   # GET /products/1 or /products/1.json
   def show
-
   end
 
   # GET /products/new
@@ -63,7 +63,8 @@ class ProductsController < ApplicationController
     end
   end
 
-def add_to_cart
+  # POST /products/:id/add_to_cart
+  def add_to_cart
     product = Product.find(params[:id])
     user_cart = current_user.cart
 
@@ -72,27 +73,37 @@ def add_to_cart
       user_cart = Cart.create(user: current_user)
     end
 
-    # Create a new CartProduct associating the cart and the product
-    cart_product = CartProduct.create(cart: user_cart, product: product, quantity: 1)
+    # Check if the product already exists in the cart
+    cart_product = user_cart.cart_products.find_by(product_id: product.id)
+
+    if cart_product.nil?
+      # If the product does not exist in the cart, create a new CartProduct
+      cart_product = CartProduct.create(cart: user_cart, product: product, quantity: 1)
+    else
+      # If the product already exists in the cart, increase its quantity by 1
+      cart_product.quantity += 1
+    end
 
     if cart_product.save
-      redirect_to cart_path, notice: "#{product.title} added to cart successfully."
+      redirect_to cart_path(current_user), notice: "#{product.title} added to cart successfully."
     else
       redirect_to product_path(product), alert: "Failed to add #{product.title} to cart."
     end
   end
 
   private
-    def require_admin
-      redirect_to root_path, alert: "You are not authorized to perform this action." unless current_user.isadmin?
-    end
-    # Use callbacks to share common setup or constraints between actions.
-    def set_product
-      @product = Product.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def product_params
-      params.require(:product).permit(:title, :category, :subtitle, :description, :price, :photo)
-    end
+  def require_admin
+    redirect_to root_path, alert: "You are not authorized to perform this action." unless current_user.isadmin?
+  end
+
+  # Use callbacks to share common setup or constraints between actions.
+  def set_product
+    @product = Product.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def product_params
+    params.require(:product).permit(:title, :category, :subtitle, :description, :price, :photo)
+  end
 end
