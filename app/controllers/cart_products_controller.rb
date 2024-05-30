@@ -4,6 +4,7 @@ class CartProductsController < ApplicationController
   # GET /cart_products or /cart_products.json
   def index
     @cart_products = CartProduct.all
+    @cart = current_user.cart
   end
 
   # GET /cart_products/1 or /cart_products/1.json
@@ -67,4 +68,32 @@ class CartProductsController < ApplicationController
     def cart_product_params
       params.require(:cart_product).permit(:carts, :products)
     end
+end
+
+
+#Cart controller test
+before_action :authenticate_user!
+
+def create
+  @cart = current_user.cart
+  @cart_product = @cart.cart_products.find_or_initialize_by(product_id: cart_product_params[:product_id])
+  @cart_product.quantity += cart_product_params[:quantity].to_i
+  if @cart_product.save
+    redirect_to cart_path, notice: 'Product added to cart.'
+  else
+    redirect_to product_path(cart_product_params[:product_id]), alert: 'Failed to add product to cart.'
+  end
+end
+
+def destroy
+  @cart_product = CartProduct.find(params[:id])
+  @cart_product.destroy
+  redirect_to cart_path, notice: 'Product removed from cart.'
+end
+
+private
+
+def cart_product_params
+  params.require(:cart_product).permit(:product_id, :quantity)
+end
 end

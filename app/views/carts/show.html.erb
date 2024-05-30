@@ -1,15 +1,4 @@
-<p style="color: green"><%= notice %></p>
-
-<%= render @cart %>
-
-<div>
-  <%= link_to "Edit this cart", edit_cart_path(@cart) %> |
-  <%= link_to "Back to carts", carts_path %>
-
-  <%= button_to "Destroy this cart", @cart, method: :delete %>
-</div>
-
-<h1>Your Shopping Cart</h1>
+<h1>Your Cart</h1>
 
 <table>
   <thead>
@@ -17,24 +6,26 @@
       <th>Product</th>
       <th>Quantity</th>
       <th>Price</th>
-      <th>Subtotal</th>
+      <th>Total</th>
       <th></th>
     </tr>
   </thead>
   <tbody>
-    <% @cart.cart_items.each do |item| %>
+    <% @cart_products.each do |cart_product| %>
       <tr>
-        <td><%= item.product.name %></td>
-        <td><%= item.quantity %></td>
-        <td><%= number_to_currency(item.product.price) %></td>
-        <td><%= number_to_currency(item.total_price) %></td>
+        <td><%= cart_product.product.name %></td>
+        <td><%= cart_product.quantity %></td>
+        <td><%= number_to_currency(cart_product.product.price) %></td>
+        <td><%= number_to_currency(cart_product.product.price * cart_product.quantity) %></td>
         <td>
-          <%= link_to 'Remove', cart_item_path(item), method: :delete %>
+          <%= link_to 'Remove', cart_product_path(cart_product), method: :delete, data: { confirm: 'Are you sure?' } %>
         </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<h2>Total: <%= number_to_currency(@cart.total_price) %></h2>
+<h2>Total: <%= number_to_currency(@cart_products.sum { |cp| cp.product.price * cp.quantity }) %></h2>
 
+<%= link_to 'Checkout', new_order_path, class: 'button' %>
+<%= link_to 'Continue Shopping', products_path, class: 'button' %>

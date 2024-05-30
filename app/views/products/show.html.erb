@@ -23,3 +23,21 @@
     <%= button_to "Destroy this product", @product, method: :delete, data: { confirm: "Are you sure?" }, class: "bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" %>
   </div>
 </div>
+
+#Test cart user_basket
+
+<h1><%= @product.name %></h1>
+<p><%= @product.description %></p>
+<p><%= number_to_currency(@product.price) %></p>
+
+<%= form_with(url: cart_cart_products_path, method: :post) do |f| %>
+  <div class="field">
+    <%= f.label :quantity %>
+    <%= f.number_field :quantity, value: 1, min: 1 %>
+  </div>
+  <%= f.hidden_field :product_id, value: @product.id %>
+  <%= f.submit 'Add to Cart', class: 'btn-primary' %>
+<% end %>
+
+<%= link_to 'Back to Products', products_path, class: 'btn-secondary' %>
+

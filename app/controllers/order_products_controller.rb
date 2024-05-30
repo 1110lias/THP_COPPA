@@ -8,6 +8,7 @@ class OrderProductsController < ApplicationController
 
   # GET /order_products/1 or /order_products/1.json
   def show
+    @order_products = OrderProduct.all
   end
 
   # GET /order_products/new
