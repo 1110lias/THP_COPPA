@@ -1,10 +1,31 @@
-<p style="color: green"><%= notice %></p>
+<!-- app/views/carts/show.html.erb -->
 
-<%= render @cart %>
+<div id="<%= dom_id @cart %>">
+  <p>
+    <strong>User:</strong>
+    <%= @cart.user.first_name %>
+  </p>
+
+  <p>
+    <strong>Total Price:</strong>
+    <%= number_to_currency(@cart.total_price) %>
+  </p>
+
+  <h2>Cart Products</h2>
+  <% @cart.cart_products.each do |cart_product| %>
+    <div id="<%= dom_id cart_product %>">
+      <p>
+        <strong>Product:</strong>
+        <%= cart_product.product.title %>
+        <%= cart_product.product.price %>
+      </p>
+
+      <!-- Add other details as needed -->
+    </div>
+  <% end %>
+</div>
 
 <div>
   <%= link_to "Edit this cart", edit_cart_path(@cart) %> |
-  <%= link_to "Back to carts", carts_path %>
-
   <%= button_to "Destroy this cart", @cart, method: :delete %>
 </div>
