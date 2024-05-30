@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: %i[show edit update destroy]
+  before_action :set_user, only: %i[show edit update destroy update_admin_status]
   before_action :authenticate_user!
-  before_action :correct_user, only: %i[show edit update destroy]
+  before_action :correct_user_or_admin, only: %i[show edit update destroy update_admin_status]
 
   # GET /users or /users.json
   def index
@@ -46,12 +46,31 @@ class UsersController < ApplicationController
     end
   end
 
+  # PATCH /users/1/update_admin_status
+  def update_admin_status
+    if @user.last_admin? && params[:user][:isadmin] == "0"
+      redirect_to @user, alert: 'Cannot remove admin status from the last admin.'
+    elsif @user.update(admin_status_params)
+      redirect_to @user, notice: 'Admin status was successfully updated.'
+    else
+      redirect_to @user, alert: 'Failed to update admin status.'
+    end
+  end
+
   # DELETE /users/1 or /users/1.json
   def destroy
-    @user.destroy!
-    respond_to do |format|
-      format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
-      format.json { head :no_content }
+    if current_user.isadmin? || @user == current_user
+      if @user.last_admin?
+        redirect_to users_url, alert: 'Cannot delete the last admin.'
+      else
+        @user.destroy!
+        respond_to do |format|
+          format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
+          format.json { head :no_content }
+        end
+      end
+    else
+      redirect_to root_path, alert: 'Access denied.'
     end
   end
 
@@ -67,7 +86,11 @@ class UsersController < ApplicationController
     params.require(:user).permit(:first_name, :last_name, :email, :phone_number, :billing_address, :delivery_address, :isadmin)
   end
 
-  def correct_user
+  def admin_status_params
+    params.require(:user).permit(:isadmin)
+  end
+
+  def correct_user_or_admin
     unless @user == current_user || current_user.isadmin?
       redirect_to root_path, alert: 'Access denied.'
     end
