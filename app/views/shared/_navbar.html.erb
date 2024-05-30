@@ -32,12 +32,14 @@
             Home
           <% end %>
         </li>
-        <li>
-          <%= link_to "cart", class: 'block py-2 px-3 text-white font-bold hover:text-amber-400', aria_current: 'page' do %>
-            <i class="fa-solid fa-cart-shopping"></i>
-            Cart
-          <% end %>
-        </li>
+        <% if user_signed_in?%>
+          <li>
+            <%= link_to cart_path(current_user), class: 'block py-2 px-3 text-white font-bold hover:text-amber-400', aria_current: 'page' do %>
+              <i class="fa-solid fa-cart-shopping"></i>
+              Cart
+            <% end %>
+          </li>
+        <% end %>
         <li>
         </li>
       </ul>

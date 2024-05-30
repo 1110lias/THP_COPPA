@@ -23,6 +23,6 @@
             </div>
         </div>
 
-        <%= link_to "Ajouter au panier", new_product_path, class: "btn btn-secondary text-base font-extralight" %>
+        <%= button_to "Add to Cart", add_to_cart_product_path(@product), method: :post, class: "btn btn-secondary text-base font-extralight" %>
     </section>
 </main>

@@ -3,9 +3,10 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  has_many :orders, dependent: :destroy
-  has_one :cart, dependent: :destroy
+  has_many :orders
+  has_one :cart
   validates :email, presence: true, uniqueness: true
+  after_create :create_cart
 
   after_create :welcome_send
 
@@ -14,5 +15,8 @@ class User < ApplicationRecord
   end
   def last_admin?
     User.where(isadmin: true).count == 1 && self.isadmin?
+  end
+  def create_cart
+    Cart.create(user: self)
   end
 end
