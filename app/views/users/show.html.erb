@@ -1,5 +1,7 @@
 <!-- app/views/users/show.html.erb -->
-<h1>User Profile</h1>
+
+<div class="my-4">
+  <h1>User Profile</h1>
 
 <div class="profile-container">
   <p><strong>First Name:</strong> <%= @user.first_name %></p>
@@ -24,38 +26,26 @@
     </div>
   <% end %>
 </div>
+</div>
 
 <%= link_to "Edit Profile", edit_user_path(@user), class: "btn btn-primary" %>
 
-<% if current_user.isadmin? %>
-  <%= link_to 'Delete User', user_path(@user), method: :delete, data: { confirm: 'Are you sure you want to delete this user?' }, class: 'btn btn-danger' %>
-
-  <!-- Form to toggle admin status -->
-  <div class="admin-status-form">
-    <%= form_with(model: @user, url: update_admin_status_user_path(@user), method: :patch, local: true) do |form| %>
-      <div class="form-group">
-        <%= form.label :isadmin, 'Admin Status' %>
-        <%= form.check_box :isadmin %>
-      </div>
-      <%= form.submit 'Update Admin Status', class: 'btn btn-primary' %>
+<div class="my-4">
+  <h2>Previous Orders</h2>
+  <div class="orders-container">
+    <% if @orders.present? %>
+      <ul>
+        <% @orders.each do |order| %>
+          <li>
+            <strong>Order ID:</strong> <%= order.id %><br>
+            <strong>Date:</strong> <%= order.created_at.strftime("%B %d, %Y") %><br>
+            <strong>Total:</strong> $<%= order.total_price %>
+            <!-- Add other order details if necessary -->
+          </li>
+        <% end %>
+      </ul>
+    <% else %>
+      <p>No previous orders found.</p>
     <% end %>
   </div>
-<% end %>
-
-<h2>Previous Orders</h2>
-<div class="orders-container">
-  <% if @orders.present? %>
-    <ul>
-      <% @orders.each do |order| %>
-        <li>
-          <strong>Order ID:</strong> <%= order.id %><br>
-          <strong>Date:</strong> <%= order.created_at.strftime("%B %d, %Y") %><br>
-          <strong>Total:</strong> $<%= order.total_price %>
-          <!-- Add other order details if necessary -->
-        </li>
-      <% end %>
-    </ul>
-  <% else %>
-    <p>No previous orders found.</p>
-  <% end %>
 </div>
