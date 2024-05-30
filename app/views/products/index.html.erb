@@ -1,12 +1,14 @@
 <div class="flex flex-col justify-center items-center">
 
-
+  <%= render partial: "shared/banner" %>
 
   <h1 class=" my-4 text-5xl">Les produits</h1>
 
   <%= render partial: "checkboxes"%>
 
+  <% if user_signed_in? && current_user.isadmin? %>
   <%= link_to "New product", new_product_path, class: "btn btn-success my-4" %>
+  <% end %>
 
   <div id="products" class="flex flex-row justify-center flex-wrap content-evenly min-w-64">
     <% @products.each do |product| %>
