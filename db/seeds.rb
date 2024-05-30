@@ -49,17 +49,20 @@ end
 end
 
 # Create fake carts
-carts = []
 users_ids = User.pluck(:id)  # Get all user IDs
 users_ids.each do |user_id|
-  cart = Cart.create!(
+  # Check if the user already has a cart
+  next if Cart.exists?(user_id: user_id)
+
+  Cart.create!(
     total_price: rand(1.0..1000.0), 
     user_id: user_id,  # Assign the user ID directly
+    startedate: Time.now - rand(1..30).days,
     created_at: Time.now - rand(1..30).days,
     updated_at: Time.now - rand(1..30).days
   )
-  carts << cart
 end
+
 
 # Create Charcuterie products
 

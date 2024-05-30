@@ -17,8 +17,15 @@
   <body class="flex flex-col h-screen">
 
     <%= render partial: "shared/navbar" %>
-
+    
     <main class="mx-auto flex-grow">
+    <div class="container mx-auto my-4">
+      <% flash.each do |type, message| %>
+        <div class="p-4 mb-4 text-sm <%= flash_class_for(type) %> <%= flash_bg_class_for(type) %> rounded-lg border border-<%= flash_class_for(type) %>" role="alert">
+          <span class="font-medium"><%= message %></span>
+        </div>
+      <% end %>
+    </div>
       <%= yield %>
     </main>
 

@@ -1,10 +1,10 @@
-<nav class="bg-pink-900 border-gray-200 text-white">
+<nav class="bg-pink-900 text-white">
   <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
     <%= link_to root_path, class: 'flex items-center space-x-3 rtl:space-x-reverse text-white' do %>
       <div class="w-16 h-16 fill-current text-white">
         <%= image_tag 'logos/logo_small.svg', alt: 'Logo' %>
       </div>
-      <span class="self-center text-2xl font-sans whitespace-nowrap dark:text-white">Coppa & Gabana</span>
+      <span class="self-center text-2xl font-sans whitespace-nowrap hidden md:block">Coppa & Gabana</span>
     <% end %>
     
     <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
@@ -17,7 +17,7 @@
         <%= link_to "Login", new_user_session_path, class: "btn-primary mx-4 pr-4" %>
         <%= link_to "Sign Up", new_user_registration_path, class: "btn-secondary mx-4" %>
       <% end %>
-      <button data-collapse-toggle="navbar-sticky" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-white rounded-lg md:hidden hover:bg-amber-500 focus:outline-none focus:ring-2 focus:bg-amber-500 dark:text-gray-400 dark:hover:bg-amber-500 dark:focus:bg-amber-500" aria-controls="navbar-sticky" aria-expanded="false">
+      <button data-collapse-toggle="navbar-sticky" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-white rounded-lg md:hidden hover:bg-amber-500 focus:outline-none focus:ring-2 focus:bg-amber-500" aria-controls="navbar-sticky" aria-expanded="false" id="burger-menu">
         <span class="sr-only">Open main menu</span>
         <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
           <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
@@ -32,15 +32,18 @@
             Home
           <% end %>
         </li>
-        <li>
-          <%= link_to "cart", class: 'block py-2 px-3 text-white font-bold hover:text-amber-400', aria_current: 'page' do %>
-            <i class="fa-solid fa-cart-shopping"></i>
-            Cart
-          <% end %>
-        </li>
+        <% if user_signed_in?%>
+          <li>
+            <%= link_to cart_path(current_user), class: 'block py-2 px-3 text-white font-bold hover:text-amber-400', aria_current: 'page' do %>
+              <i class="fa-solid fa-cart-shopping"></i>
+              Cart
+            <% end %>
+          </li>
+        <% end %>
         <li>
         </li>
       </ul>
     </div>
   </div>
 </nav>
+

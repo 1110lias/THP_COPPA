@@ -28,8 +28,9 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to user_url(@user), notice: 'User was successfully created.' }
+        format.html { redirect_to user_url(@user), notice: '' }
         format.json { render :show, status: :created, location: @user }
+        flash[:success] = "L'utilisateur a été créé avec succès !"
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @user.errors, status: :unprocessable_entity }
@@ -40,7 +41,7 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1 or /users/1.json
   def update
     if @user.update(user_params)
-      redirect_to @user, notice: 'Profile was successfully updated.'
+      redirect_to @user, notice: 'Le profil a été modifié avec succès.'
     else
       render :edit
     end
