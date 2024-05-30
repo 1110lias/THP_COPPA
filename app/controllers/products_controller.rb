@@ -63,6 +63,25 @@ class ProductsController < ApplicationController
     end
   end
 
+def add_to_cart
+    product = Product.find(params[:id])
+    user_cart = current_user.cart
+
+    # If the user doesn't have a cart, create one
+    unless user_cart
+      user_cart = Cart.create(user: current_user)
+    end
+
+    # Create a new CartProduct associating the cart and the product
+    cart_product = CartProduct.create(cart: user_cart, product: product, quantity: 1)
+
+    if cart_product.save
+      redirect_to cart_path, notice: "#{product.title} added to cart successfully."
+    else
+      redirect_to product_path(product), alert: "Failed to add #{product.title} to cart."
+    end
+  end
+
   private
     def require_admin
       redirect_to root_path, alert: "You are not authorized to perform this action." unless current_user.isadmin?
