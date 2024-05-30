@@ -7,8 +7,26 @@
   <p><strong>Email:</strong> <%= @user.email %></p>
   <p><strong>Joined:</strong> <%= @user.created_at.strftime("%B %d, %Y") %></p>
   <!-- Add other profile fields if necessary -->
+
+  <!-- Conditional content for admin users -->
+  <% if @user.isadmin? %>
+    <div class="admin-options">
+      <h2>Admin Options</h2>
+      <p>Role: Admin</p>
+      <%= link_to 'Manage Users', users_path, class: 'btn btn-secondary' %>
+      <%= link_to 'Admin Dashboard', "admin_dashboard_path", class: 'btn btn-secondary' %>
+      <!-- Add other admin-specific options or information here -->
+    </div>
+  <% else %>
+    <div class="user-info">
+      <p>Role: User</p>
+      <!-- Add other user-specific information or options here -->
+    </div>
+  <% end %>
 </div>
+
 <%= link_to "Edit Profile", edit_user_path(@user), class: "btn btn-primary" %>
+
 <h2>Previous Orders</h2>
 <div class="orders-container">
   <% if @orders.present? %>
@@ -26,4 +44,3 @@
     <p>No previous orders found.</p>
   <% end %>
 </div>
-

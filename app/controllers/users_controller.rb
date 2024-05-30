@@ -10,7 +10,6 @@ class UsersController < ApplicationController
 
   # GET /users/1
   def show
-    # Any additional logic for showing the user's profile
     @orders = @user.orders
   end
 
@@ -21,7 +20,6 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
-    # No need to call set_user here; it's handled by the before_action
   end
 
   # POST /users or /users.json
@@ -51,7 +49,6 @@ class UsersController < ApplicationController
   # DELETE /users/1 or /users/1.json
   def destroy
     @user.destroy!
-
     respond_to do |format|
       format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
       format.json { head :no_content }
@@ -67,11 +64,11 @@ class UsersController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :email, :phone_number, :billing_address, :delivery_address) # Fixed the typo here
+    params.require(:user).permit(:first_name, :last_name, :email, :phone_number, :billing_address, :delivery_address, :isadmin)
   end
 
   def correct_user
-    unless @user == current_user
+    unless @user == current_user || current_user.isadmin?
       redirect_to root_path, alert: 'Access denied.'
     end
   end
