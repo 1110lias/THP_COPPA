@@ -1,42 +1,45 @@
-<%= form_with(model: user, local: true) do |form| %>
-  <% if user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+<div class="max-w-lg bg-white border border-gray-200 rounded-lg shadow flex flex-col m-6 p-5">
+  <h2 class="text-2xl font-bold tracking-tight text-gray-900 mb-4 flex justify-center">Edit User</h2>
 
-      <ul>
-      <% user.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+  <%= form_with(model: user, local: true, html: { class: 'space-y-4' }) do |form| %>
+    <% if user.errors.any? %>
+      <div id="error_explanation" class="mb-4">
+        <h2 class="text-lg font-semibold text-red-600"><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+        <ul class="list-disc list-inside text-red-600">
+        <% user.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="field">
+      <%= form.label :first_name, 'Prénom', class: 'block mb-2 text-sm font-medium text-gray-900' %>
+      <%= form.text_field :first_name, class: 'w-full p-2.5 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500' %>
+    </div>
+
+    <div class="field">
+      <%= form.label :last_name, 'Nom', class: 'block mb-2 text-sm font-medium text-gray-900' %>
+      <%= form.text_field :last_name, class: 'w-full p-2.5 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500' %>
+    </div>
+
+    <div class="field">
+      <%= form.label :email, class: 'block mb-2 text-sm font-medium text-gray-900' %>
+      <%= form.email_field :email, class: 'w-full p-2.5 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500' %>
+    </div>
+
+    <div class="field">
+      <%= form.label :password, class: 'block mb-2 text-sm font-medium text-gray-900' %>
+      <%= form.password_field :password, autocomplete: "new-password", class: 'w-full p-2.5 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500' %>
+    </div>
+
+    <div class="field">
+      <%= form.label :password_confirmation, class: 'block mb-2 text-sm font-medium text-gray-900' %>
+      <%= form.password_field :password_confirmation, autocomplete: "new-password", class: 'w-full p-2.5 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500' %>
+    </div>
+
+    <div class="actions flex justify-center">
+      <%= form.submit "Update", class: 'w-1/2 px-4 py-2 text-white btn-secondary' %>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= form.label :Prénom %>
-    <%= form.text_field :first_name %>
-  </div>
-
-  <div class="field">
-    <%= form.label :Nom %>
-    <%= form.text_field :last_name %>
-  </div>
-
-  <div class="field">
-    <%= form.label :email %>
-    <%= form.email_field :email %>
-  </div>
-
-  <div class="field">
-    <%= form.label :password %>
-    <%= form.password_field :password %>
-  </div>
-
-  <div class="field">
-    <%= form.label :password_confirmation %>
-    <%= form.password_field :password_confirmation %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>
